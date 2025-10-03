@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuickGCal - Instant Google Calendar Access</title>
+    <meta name="description" content="The fastest way to access your Google Calendar meetings. QuickGCal extension shows your upcoming meetings in one click.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    animation: {
+                        'gradient': 'gradient 8s ease infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        gradient: {
+                            '0%, 100%': { backgroundPosition: '0% 50%' },
+                            '50%': { backgroundPosition: '100% 50%' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .bg-gradient-animated {
+            background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #f5576c);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .neon-glow {
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .hover-lift {
+            transition: all 0.3s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body class="bg-gray-950 text-white overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-effect">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <span class="text-2xl font-bold text-gradient">QuickGCal</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-6">
+                        <a href="#features" class="hover:text-purple-400 transition-colors">Features</a>
+                        <a href="#install" class="hover:text-purple-400 transition-colors">Install</a>
+                        <a href="#support" class="hover:text-purple-400 transition-colors">Support</a>
+                        <a href="#install" class="bg-gradient-to-r from-purple-600 to-pink-600 px-4 py-2 rounded-full hover:opacity-90 transition-opacity">Get Extension</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center px-4">
+        <div class="absolute inset-0 bg-gradient-animated opacity-10"></div>
+        <div class="relative z-10 text-center max-w-5xl mx-auto">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 animate-fade-in">
+                Your Google Calendar,
+                <span class="text-gradient block mt-2">One Click Away</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
+                The fastest Chrome extension to view upcoming meetings, join video calls, and stay on top of your schedule
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#install" class="bg-gradient-to-r from-purple-600 to-pink-600 px-8 py-4 rounded-full text-lg font-semibold hover:opacity-90 transition-all hover:scale-105">
+                    Add to Chrome - Free
+                </a>
+                <a href="#features" class="border border-purple-500 px-8 py-4 rounded-full text-lg font-semibold hover:bg-purple-600/20 transition-all">
+                    See Features
+                </a>
+            </div>
+            <div class="mt-16 grid grid-cols-3 gap-8 text-center">
+                <div class="glass-effect p-6 rounded-2xl hover-lift">
+                    <div class="text-3xl font-bold text-purple-400">1-Click</div>
+                    <div class="text-gray-400">Access Meetings</div>
+                </div>
+                <div class="glass-effect p-6 rounded-2xl hover-lift">
+                    <div class="text-3xl font-bold text-purple-400">7-Day</div>
+                    <div class="text-gray-400">Meeting Preview</div>
+                </div>
+                <div class="glass-effect p-6 rounded-2xl hover-lift">
+                    <div class="text-3xl font-bold text-purple-400">Instant</div>
+                    <div class="text-gray-400">Video Call Join</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 px-4">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-4">
+                Why Choose <span class="text-gradient">QuickGCal</span>
+            </h2>
+            <p class="text-center text-gray-400 mb-12 text-lg">Everything you need for efficient meeting management</p>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="glass-effect p-8 rounded-2xl hover-lift group">
+                    <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Instant Meeting View</h3>
+                    <p class="text-gray-400 mb-4">See all your upcoming meetings for the next 7 days with one click</p>
+                    <ul class="text-sm text-gray-500 space-y-2">
+                        <li>• Next 7 days of meetings</li>
+                        <li>• Meeting status (live, upcoming, ended)</li>
+                        <li>• Time until next meeting</li>
+                    </ul>
+                </div>
+
+                <div class="glass-effect p-8 rounded-2xl hover-lift group">
+                    <div class="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">One-Click Video Join</h3>
+                    <p class="text-gray-400 mb-4">Instantly join Google Meet, Zoom, Teams, or any video conference</p>
+                    <ul class="text-sm text-gray-500 space-y-2">
+                        <li>• Auto-detect video links</li>
+                        <li>• Support all major platforms</li>
+                        <li>• Join button on each meeting</li>
+                    </ul>
+                </div>
+
+                <div class="glass-effect p-8 rounded-2xl hover-lift group">
+                    <div class="w-16 h-16 bg-gradient-to-r from-green-500 to-blue-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-5 5v-5zM4 19v-2.5A2.5 2.5 0 016.5 14H13"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Smart Notifications</h3>
+                    <p class="text-gray-400 mb-4">Never miss a meeting with intelligent reminders and badge updates</p>
+                    <ul class="text-sm text-gray-500 space-y-2">
+                        <li>• 5-minute meeting reminders</li>
+                        <li>• Live badge countdown</li>
+                        <li>• Desktop notifications</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Screenshot Section -->
+    <section class="py-20 px-4 relative">
+        <div class="absolute inset-0 bg-gradient-to-b from-purple-900/10 to-transparent"></div>
+        <div class="max-w-5xl mx-auto relative z-10 text-center">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4">
+                See It In <span class="text-gradient">Action</span>
+            </h2>
+            <p class="text-gray-400 mb-12 text-lg">Clean, minimal interface focused on what matters</p>
+
+            <div class="glass-effect p-8 rounded-2xl hover-lift">
+                <div class="bg-gray-800 rounded-xl p-6 text-left">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                        <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                        <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                        <span class="text-sm text-gray-400 ml-4">QuickGCal</span>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="bg-gray-700 rounded-lg p-4">
+                            <div class="text-sm text-gray-400">Today • Mon, Jan 15</div>
+                            <div class="mt-2">
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <div class="font-semibold">Team Standup</div>
+                                        <div class="text-sm text-green-400">🔴 In progress • 15m remaining</div>
+                                    </div>
+                                    <div class="text-right">
+                                        <div class="text-sm">9:00 AM</div>
+                                        <div class="text-xs text-gray-400">30m</div>
+                                    </div>
+                                </div>
+                                <button class="mt-2 bg-blue-600 text-xs px-3 py-1 rounded-full">Join</button>
+                            </div>
+                        </div>
+
+                        <div class="bg-gray-700 rounded-lg p-4">
+                            <div>
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <div class="font-semibold">Client Review</div>
+                                        <div class="text-sm text-blue-400">Starts in 2h 30m</div>
+                                    </div>
+                                    <div class="text-right">
+                                        <div class="text-sm">2:00 PM</div>
+                                        <div class="text-xs text-gray-400">1h</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Install Section -->
+    <section id="install" class="py-20 px-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6">
+                Get Started in <span class="text-gradient">Seconds</span>
+            </h2>
+            <p class="text-xl text-gray-300 mb-8">
+                Install QuickGCal and transform your meeting experience
+            </p>
+
+            <div class="grid md:grid-cols-3 gap-6 mb-12">
+                <div class="glass-effect p-6 rounded-2xl">
+                    <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-xl font-bold">1</span>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Add to Chrome</h3>
+                    <p class="text-gray-400 text-sm">Click the button below to install from Chrome Web Store</p>
+                </div>
+
+                <div class="glass-effect p-6 rounded-2xl">
+                    <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-xl font-bold">2</span>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Sign In</h3>
+                    <p class="text-gray-400 text-sm">Connect your Google Calendar with one click</p>
+                </div>
+
+                <div class="glass-effect p-6 rounded-2xl">
+                    <div class="w-12 h-12 bg-gradient-to-r from-green-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-xl font-bold">3</span>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Start Using</h3>
+                    <p class="text-gray-400 text-sm">Click the extension icon to see your meetings</p>
+                </div>
+            </div>
+
+            <div class="glass-effect p-8 rounded-3xl neon-glow">
+                <a href="https://chrome.google.com/webstore" class="bg-gradient-to-r from-purple-600 to-pink-600 px-12 py-4 rounded-full text-xl font-semibold hover:opacity-90 transition-all hover:scale-105 inline-flex items-center gap-3">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 2.4c5.302 0 9.6 4.298 9.6 9.6s-4.298 9.6-9.6 9.6S2.4 17.302 2.4 12 6.698 2.4 12 2.4z"/>
+                    </svg>
+                    Add to Chrome - Free
+                </a>
+                <p class="text-gray-400 mt-4 text-sm">Free forever • No account required • Secure Google OAuth</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Support Section -->
+    <section id="support" class="py-20 px-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6">
+                Need <span class="text-gradient">Help?</span>
+            </h2>
+            <p class="text-xl text-gray-300 mb-8">
+                We're here to help you get the most out of QuickGCal
+            </p>
+
+            <div class="grid md:grid-cols-2 gap-6 mb-8">
+                <div class="glass-effect p-6 rounded-2xl text-left">
+                    <h3 class="text-xl font-bold mb-3">📧 Email Support</h3>
+                    <p class="text-gray-400 mb-4">Get help with installation, features, or troubleshooting</p>
+                    <a href="mailto:neuralwork.net@gmail.com" class="text-purple-400 hover:text-purple-300">neuralwork.net@gmail.com</a>
+                </div>
+
+                <div class="glass-effect p-6 rounded-2xl text-left">
+                    <h3 class="text-xl font-bold mb-3">🔧 Feature Requests</h3>
+                    <p class="text-gray-400 mb-4">Have an idea to make the extension better? We'd love to hear it!</p>
+                    <a href="mailto:neuralwork.net@gmail.com" class="text-purple-400 hover:text-purple-300">neuralwork.net@gmail.com</a>
+                </div>
+            </div>
+
+            <div class="glass-effect p-6 rounded-2xl">
+                <h3 class="text-xl font-bold mb-3">Frequently Asked Questions</h3>
+                <div class="space-y-4 text-left">
+                    <details class="group">
+                        <summary class="cursor-pointer text-purple-400 hover:text-purple-300">Is my calendar data secure?</summary>
+                        <p class="text-gray-400 mt-2 ml-4">Yes! We use Google's official OAuth system and never store your calendar data. Everything stays between you and Google.</p>
+                    </details>
+                    <details class="group">
+                        <summary class="cursor-pointer text-purple-400 hover:text-purple-300">Does it work with G Suite/Workspace?</summary>
+                        <p class="text-gray-400 mt-2 ml-4">Absolutely! QuickGCal works with personal Gmail accounts and Google Workspace accounts.</p>
+                    </details>
+                    <details class="group">
+                        <summary class="cursor-pointer text-purple-400 hover:text-purple-300">Can I see more than 7 days of meetings?</summary>
+                        <p class="text-gray-400 mt-2 ml-4">Currently we focus on the next 7 days to keep the interface clean and relevant. More options coming soon!</p>
+                    </details>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-4 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto text-center">
+            <div class="mb-6">
+                <span class="text-2xl font-bold text-gradient">QuickGCal</span>
+            </div>
+            <p class="text-gray-400 mb-6">Made with ❤️ by <a href="https://neuralwork.net" class="text-purple-400 hover:text-purple-300">NeuralWork</a></p>
+            <div class="flex justify-center gap-6">
+                <a href="mailto:neuralwork.net@gmail.com" class="text-gray-400 hover:text-purple-400">Contact</a>
+                <a href="mailto:neuralwork.net@gmail.com" class="text-gray-400 hover:text-purple-400">Support</a>
+                <a href="https://neuralwork.net" class="text-gray-400 hover:text-purple-400">NeuralWork</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
